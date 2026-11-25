@@ -1,20 +1,35 @@
-# Carbon-Commuter-Footprint-Cost-Split-Matchmaker-
+# Commuter Carbon Footprint & Cost-Split Matchmaker
 
-Commuter Carbon Footprint & Cost-Split MatchmakerA Python CLI and visual reporting application built by a team of 5 to group commuters traveling along the same route within a 15-minute departure window, calculate $$\text{CO}_2$$ emissions saved from shared rides, split cab fares fairly, and display visual savings charts.
-✨ Key Features Student Registration & CSV Storage (registration.py): Validates student names, routes (source and dest), HH:MM departure times, and positive estimated fares, persisting records to commuters.csv.Route & Time Matching (vikram_matching.py): Groups commuters with matching case-insensitive source and destination routes whose departure times are within 15 minutes of each other.Carbon Footprint Calculation (mahi_carbon.py): Computes individual emissions, shared ride emissions, $$\text{CO}_2$$ saved (in $$\text{kg}$$), and percentage saved using an emission factor of $$0.12\text{ kg CO}_2$$ per vehicle per km.Fare Split Calculation (fare_split.py): Divides total cab fare across group members, calculates per-student savings against the original fare, and warns if shared travel costs more than individual travel.Savings Dashboard (dashboard.py): Uses matplotlib to generate bar charts comparing Individual vs. Shared Ride $$\text{CO}_2$$ Emissions ($$\text{kg}$$) and Money Saved Per Student ($$\text{Rs.}$$).
- 
- 📂 Project Structure.
-├── main.py              # Main entry point orchestrating matching, carbon, fare, and charts
-├── registration.py      # Standalone CLI & helpers for registering and loading commuters
-├── vikram_matching.py   # Route and ±15-minute departure time grouping logic
-├── mahi_carbon.py       # CO2 emission and savings calculation module
-├── fare_split.py        # Group cab fare split and savings calculator
-├── dashboard.py         # Matplotlib visualizations for carbon and money savings
-└── commuters.csv        # Auto-generated CSV file storing registered commuter records
+A Python project built for our Computational Thinking and Programming course (2026CSAE100) at Bennett University.
 
-🚀 Prerequisites & InstallationPython: Python 3.xDependency: matplotlib (all other imports—csv, os, datetime—are part of the Python standard library)Clone the repository:git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
-Install matplotlib:pip install matplotlib
-💻 UsageStep 1: Register CommutersRun registration.py to add students and save entries to commuters.csv:python registration.py
-Use the menu (1 to register a student, 2 to view registered students, 3 to exit).Step 2: Run the Matchmaker & View ReportsRun main.py to group matched commuters, enter shared vehicle count, trip distance ($$\text{km}$$), and cab fares ($$\text{Rs.}$$), and open the savings dashboard:python main.py
-🧮 Calculation FormulasCarbon Emissions:$$$$\text{Individual Emissions} = \text{Students} \times \text{Distance} \times 0.12\text{ kg CO}_2$$$$$$$$\text{Shared Emissions} = \text{Vehicles} \times \text{Distance} \times 0.12\text{ kg CO}_2$$$$Fare Split:$$$$\text{Fare Per Student} = \frac{\text{Total Cab Fare}}{\text{Number of Students}}$$$$$$$$\text{Money Saved} = \text{Original Fare} - \text{Fare Per Student}$$$$👥 Team (5 Members)Module / ResponsibilityFileContributorStudent Registration & CSV Storageregistration.pyTeam Member 1Route & Time Matchmakingvikram_matching.pyVikramCarbon Footprint Calculationmahi_carbon.pyMahiFare Split Calculationfare_split.pyTeam Member 4Dashboard & Main Integrationdashboard.py, main
+Many day-scholar students commuting to Bennett University from nearby areas like Pari Chowk, Depot, Delta 1, Knowledge Park, and Alpha 1 book separate cabs even when they travel the same route around the same time. This project matches students on the same route within a 15-minute window, splits cab fares fairly, estimates CO2 saved, and shows bar charts using Matplotlib.
+
+## Files & Features
+- registration.py: Creates commuters.csv if missing, checks student inputs (name, source, destination, HH:MM time, and fare), and lets users register or view commuters
+- vikram_matching.py: Groups students with matching source and destination (ignoring case and extra spaces) whose departure times are within 15 minutes of each other
+- mahi_carbon.py: Checks vehicle count and distance, then calculates individual and shared CO2 emissions (at 0.12 kg per vehicle per km), CO2 saved, and saving percentage
+- fare_split.py: Splits total cab fare equally among group members, calculates money saved per student, and warns if sharing costs more than traveling solo
+- dashboard.py: Plots two Matplotlib bar charts comparing individual vs. shared CO2 emissions and money saved per student
+- main.py: Connects all modules into one console flow with try-except handling and printed reports
+- commuters.csv: Stores saved commuter records
+
+## Setup & Run
+Install matplotlib first (csv, os, and datetime come built-in with Python):
+pip install matplotlib
+
+Step 1: Register commuters
+python registration.py
+
+Step 2: Run the matchmaker after matching
+For each matched group, enter:
+- number of shared vehicles and distance in km (for CO2 savings)
+- total cab fare and original fare per student (for fare splitting)
+Then view the printed reports and Matplotlib charts:
+python main.py
+
+## Team (Batch 71)
+- Vikram Yadav (S26CSEU2534): Main integration and route/time matching
+- Krish Jha (S26CSEU2525): Registration, input validation, and CSV storage
+- Anushka Chaurasia (S26CSEU2510): Fare splitting and savings output
+- Maahi Bansal (S26CSEU2540): Carbon footprint and savings calculation
+- Harsh Pandey (S26CSEU2538): Matplotlib dashboard charts
